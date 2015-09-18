@@ -1,0 +1,61 @@
+<html>
+
+
+<head>
+	
+	<title>JS Micro Templating</title>
+
+	<style>
+
+	* {
+		margin: 0;
+		padding: 0;
+	}
+
+	body {
+		background-color: black;
+		color: white;
+	}
+
+	</style>
+
+</head>
+
+<body>
+
+	<script type="text/javascript" src="microTemplating.js"></script>
+
+	<script>
+
+		function appendToBody( content ) {
+
+			document.body.innerHTML += content;
+
+		}
+
+		// Case 1: Simple template
+		var tmp1 = '<div><%=greeting%></div>';
+		var parseResult = template( tmp1, { "greeting": "Hello" } );
+		
+		console.log( "parsed Template:", parseResult );
+		appendToBody( parseResult + "<br/>" );
+
+		// Case 2: Template with loops
+		var tmp2 = '<% for (var i = 0; i < users.length; i++ ) { %>' +
+			'<li><% print(users[i].name); %></li>' +
+			'<% } %>';
+
+		parseResult = template( tmp2, { "users": [
+			{ "name": "google" },
+			{ "name": "firefox" },
+			{ "name": "edge" }
+		] } );
+		
+		console.log( "parsed Template:", parseResult );
+		appendToBody( parseResult + "<br/>" );
+
+	</script>
+
+</body>
+
+</html>

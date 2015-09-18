@@ -1,0 +1,26 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <div id="log"></div>
+
+    <script type="text/javascript" src="random.js"></script>
+
+    <script>
+
+        var log = function( msg ) {
+            document.getElementById( "log" ).innerHTML += ( msg || "" ) +
+                "<br/>";
+        };
+
+        log( "random.number() = " + random.number() );
+        log( "random.number( 2 ) = " + random.number( 2 ) );
+
+    </script>
+
+</body>
+
+</html>

@@ -33,6 +33,10 @@
 
 		}
 
+		// API:
+		// template( templateString, data )
+		// setTemplateTags ( startTag, endTag, variableTag )
+
 		// Case 1: Simple template
 		var tmp1 = '<div><%=greeting%></div>';
 		var parseResult = template( tmp1, { "greeting": "Hello" } );
@@ -41,9 +45,9 @@
 		appendToBody( parseResult + "<br/>" );
 
 		// Case 2: Template with loops
-		var tmp2 = '<% for (var i = 0; i < users.length; i++ ) { %>' +
+		var tmp2 = '<ul><% for (var i = 0; i < users.length; i++ ) { %>' +
 			'<li><% print(users[i].name); %></li>' +
-			'<% } %>';
+			'<% } %></ul>';
 
 		parseResult = template( tmp2, { "users": [
 			{ "name": "google" },
@@ -51,6 +55,15 @@
 			{ "name": "edge" }
 		] } );
 		
+		console.log( "parsed Template:", parseResult );
+		appendToBody( parseResult + "<br/>" );
+
+		// Case 3: Custom template tags
+		setTemplateTags( "{{", "}}", "{{=" );
+
+		var tmp3 = "<div>{{= greeting }}</div>";
+		parseResult = template( tmp3, { "greeting": "World" } );
+
 		console.log( "parsed Template:", parseResult );
 		appendToBody( parseResult + "<br/>" );
 

@@ -6,6 +6,22 @@
 	var cache = {};
 
 	/**
+	 *Template tags
+	 */
+	var startTag = "<%";
+	var variableTag = startTag + "=";
+	var endTag = "%>";
+
+	// Regex: /<%(?!=)/g
+	var startTagPattern = new RegExp( startTag + "(?!=)", "g" );
+
+	// Regex: /<%=(.*?)%>/g
+	var variableTagPattern = new RegExp( variableTag + "(.*?)" + endTag, "g" );
+
+	// Regex: /%>/g
+	var endTagPattern = new RegExp( endTag, "g" );
+
+	/**
 	 * Convert object to string format.
 	 */
 	var convertDataToStr = function convertDataToStr( data ) {
@@ -38,10 +54,10 @@
 			"p.push('" +
 
 			templateStr.replace( /[\r\t\n]/g, " " )
-				.replace( /<%(?!=)/g, "\t" )
-				.replace( /<%=(.*?)%>/g, "',$1,'" )
+				.replace( startTagPattern, "\t" )
+				.replace( variableTagPattern, "',$1,'" )
 				.replace( /\t/g, "');" )
-				.replace( /%>/g, "p.push('" )
+				.replace( endTagPattern, "p.push('" )
 
 			+ "');return p.join('');"
 
@@ -76,6 +92,38 @@
 		// Provide some basic currying to the user
 		return data ? fn( data ) : fn;
 	
+	};
+
+	/**
+	 * Set the tags of the template.
+	 *
+	 * @param start = start tag
+	 * @param end = end tag
+	 * @param varia = variable tag
+	 */
+	w.setTemplateTags = function setTemplateTags( start, end, varia ) {
+
+		if ( start ) {
+			
+			startTag = start;
+			startTagPattern = new RegExp( startTag + "(?!=)", "g" );
+		
+		}
+
+		if ( end ) {
+			
+			endTag = end;
+			endTagPattern = new RegExp( endTag, "g" );
+		
+		}
+
+		if ( varia ) {
+			
+			variableTag = varia;
+			variableTagPattern = new RegExp( variableTag + "(.*?)" + endTag, "g" );
+		
+		}
+
 	};
 
 } )( window );

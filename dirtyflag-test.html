@@ -1,0 +1,36 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <div id="log"></div>
+
+    <script type="text/javascript" src="dirtyflag.js"></script>
+    <script>
+
+    var o = {
+        "primary": 1,
+        "derived": 5,
+        "transform": function() {
+            return this.primary * 5;
+        }
+    };
+    var logDiv = document.getElementById( "log" );
+
+    function log( val ) {
+        logDiv.innerHTML += "<br/>" + val;
+    }
+
+    // test
+    o = new DirtyFlag( o );
+    log( o.primary + " , " + o.derived );
+    o.primary = 2;
+    log( o.primary + " , " + o.derived );
+
+    </script>
+
+</body>
+
+</html>

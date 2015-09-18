@@ -1,0 +1,51 @@
+<html>
+
+<head>
+</head>
+
+<body>
+
+    <div id="log"></div>
+
+    <script type="text/javascript" src="range.js"></script>
+
+    <script>
+
+        function log( msg ) {
+            document.getElementById( "log" ).innerHTML += ( msg || "" ) +
+                "<br/>";
+        }
+
+        log( 'range.for( 5 ) = ' + range.for( 5 ) );
+        log( 'range.for( 5, 6 ) = ' + range.for( 5, 6 ) );
+        log( 'range for( 5, 6, 2 ) = ' + range.for( 5, 6, 2 ) );
+        log();
+
+        log( 'range.from( 1, 5 ) = ' + range.from( 1, 5 ) );
+        log( 'range.from( 6, 10 ) = ' + range.from( 6, 10 ) );
+        log( 'range.from( 6, 10, 2 ) = ' + range.from( 6, 10, 2 ) );
+        log();
+
+        log( 'range.trim( [ -1, 0, 1, 2, 3, 4, 5, 6 ], 0 ) = ' +
+            range.trim( [ -1, 0, 1, 2, 3, 4, 5, 6 ], 0 ) );
+        log( 'range.trim( [ -1, 0, 1, 2, 3, 4, 5, 6 ], null, 5 ) = ' +
+            range.trim( [ -1, 0, 1, 2, 3, 4, 5, 6 ], null, 5 ) );
+        log( 'range.trim( [ -1, 0, 1, 2, 3, 4, 5, 6 ], 0, 5 ) = ' +
+            range.trim( [ -1, 0, 1, 2, 3, 4, 5, 6 ], 0, 5 ) );
+        log();
+
+        log( 'range.pad( 5, 2 ) = ' + range.pad( 5, 2 ) );
+        log( 'range.pad( 5, 2, 2 ) = ' + range.pad( 5, 2, 2 ) );
+        log( 'range.pad( 5, 5, 2 ) = ' + range.pad( 5, 5, 2 ) );
+        log( 'range.pad( 5, 5, 2, 0 ) = ' + range.pad( 5, 5, 2, 0 ) );
+        log( 'range.pad( 5, 5, 2, null, 10 ) = ' +
+            range.pad( 5, 5, 2, null, 10 ) );
+        log( 'range.pad( 5, 5, 2, 0, 10 ) = ' +
+            range.pad( 5, 5, 2, 0, 10 ) );
+        log();
+
+    </script>
+
+</body>
+
+</html>

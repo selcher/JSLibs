@@ -58,11 +58,20 @@
 		console.log( "parsed Template:", parseResult );
 		appendToBody( parseResult + "<br/>" );
 
-		// Case 3: Custom template tags
+		// Case 3: Template with conditions
+		var tmp3 = '<% if ( cond1 ) { %><div>Condition 1 is true</div><% } %>' +
+			'<% if ( cond2 ) { %><div>Condition 2 is true</div><% } %>';
+
+		parseResult = template( tmp3, { "cond1": true, "cond2": false } );
+
+		console.log( "parsed Template:", parseResult );
+		appendToBody( parseResult + "<br/>" );
+
+		// Case 4: Custom template tags
 		setTemplateTags( "{{", "}}", "{{=" );
 
-		var tmp3 = "<div>{{= greeting }}</div>";
-		parseResult = template( tmp3, { "greeting": "World" } );
+		var tmp4 = "<div>{{= greeting }}</div>";
+		parseResult = template( tmp4, { "greeting": "World" } );
 
 		console.log( "parsed Template:", parseResult );
 		appendToBody( parseResult + "<br/>" );

@@ -53,13 +53,29 @@
 
 			"p.push('" +
 
-			templateStr.replace( /[\r\t\n]/g, " " )
-				.replace( startTagPattern, "\t" )
-				.replace( variableTagPattern, "',$1,'" )
-				.replace( /\t/g, "');" )
-				.replace( endTagPattern, "p.push('" )
+			templateStr.replace(
+				
+					/[\r\t\n]/g, " "
+				
+				).replace(
+				
+					startTagPattern, "\t"
+				
+				).replace(
+				
+					variableTagPattern, "',$1,'"
+				
+				).replace(
+				
+					/\t/g, "');"
+				
+				).replace(
+				
+					endTagPattern, "p.push('"
+				
+				) +
 
-			+ "');return p.join('');"
+			"');return p.join('');"
 
 		);
 
